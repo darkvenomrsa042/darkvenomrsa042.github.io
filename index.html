@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>DarkVenom</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <style>
+    :root{
+      --blue1:#2563eb;
+      --blue2:#0ea5e9;
+      --bg:#ffffff;
+      --text:#111111;
+    }
+
+    body.dark{
+      --bg:#0f172a;
+      --text:#ffffff;
+    }
+
+    *{
+      box-sizing:border-box;
+    }
+
+    body{
+      margin:0;
+      font-family:Segoe UI, sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      overflow-x:hidden;
+      scroll-behavior:smooth;
+      transition:.3s;
+    }
+
+    /* Scroll Progress */
+    #progress{
+      position:fixed;
+      top:0;
+      left:0;
+      height:4px;
+      background:linear-gradient(90deg,var(--blue1),var(--blue2));
+      width:0%;
+      z-index:1000;
+    }
+
+    /* Floating Blobs */
+    .blob{
+      position:fixed;
+      width:500px;
+      height:500px;
+      background:linear-gradient(45deg,var(--blue1),var(--blue2));
+      border-radius:50%;
+      filter:blur(120px);
+      opacity:.12;
+      z-index:-1;
+    }
+
+    .blob1{ top:-200px; left:-200px; }
+    .blob2{ bottom:-200px; right:-200px; }
+
+    section{
+      padding:100px 20px;
+      max-width:1100px;
+      margin:auto;
+      opacity:0;
+      transform:translateY(40px);
+      transition:all .7s ease;
+    }
+
+    section.visible{
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    h1,h2{
+      margin-bottom:20px;
+    }
+
+    /* Hero */
+
+    .hero{
+      text-align:center;
+      padding-top:140px;
+    }
+
+    .hero h1{
+      font-size:clamp(40px,7vw,65px);
+      background:linear-gradient(90deg,var(--blue1),var(--blue2));
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+    }
+
+    .hero p{
+      font-size:18px;
+      opacity:.7;
+    }
+
+    .btn-group{
+      margin-top:40px;
+      display:flex;
+      justify-content:center;
+    }
+
+    .btn{
+      padding:14px 30px;
+      border-radius:12px;
+      border:none;
+      cursor:pointer;
+      font-size:15px;
+      transition:.3s;
+      background:var(--blue1);
+      color:white;
+    }
+
+    .btn:hover{
+      transform:translateY(-6px);
+      box-shadow:0 15px 30px rgba(37,99,235,.3);
+    }
+
+    /* Cards */
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:30px;
+    }
+
+    .card{
+      padding:30px;
+      border-radius:18px;
+      background:rgba(255,255,255,0.7);
+      backdrop-filter:blur(10px);
+      box-shadow:0 10px 30px rgba(0,0,0,.08);
+      transition:.3s;
+    }
+
+    body.dark .card{
+      background:rgba(30,41,59,0.6);
+    }
+
+    .card:hover{
+      transform:translateY(-8px);
+    }
+
+    /* Contact Buttons */
+
+    .contact-buttons{
+      display:flex;
+      justify-content:center;
+      gap:30px;
+      flex-wrap:wrap;
+      margin-top:40px;
+    }
+
+    .contact-buttons a{
+      padding:16px 30px;
+      border-radius:12px;
+      text-decoration:none;
+      font-weight:500;
+      color:white;
+      transition:.3s;
+    }
+
+    .wa{ background:#2563eb; }
+    .tg{ background:#0ea5e9; }
+    .mail{ background:#1d4ed8; }
+
+    .contact-buttons a:hover{
+      transform:translateY(-6px);
+      box-shadow:0 15px 30px rgba(37,99,235,.3);
+    }
+
+    footer{
+      text-align:center;
+      padding:40px;
+      margin-top:60px;
+      background:#f3f4f6;
+    }
+
+    body.dark footer{
+      background:#111827;
+    }
+
+    .toggle-dark{
+      position:fixed;
+      bottom:20px;
+      right:20px;
+      background:var(--blue1);
+      color:white;
+      border:none;
+      padding:10px 14px;
+      border-radius:50px;
+      cursor:pointer;
+    }
+
+  </style>
+</head>
+<body>
+
+<div id="progress"></div>
+<div class="blob blob1"></div>
+<div class="blob blob2"></div>
+
+<section class="hero">
+  <h1>Hi, I'm DarkVenom</h1>
+  <p>Developer • Bot Builder • API Creator</p>
+
+  <div class="btn-group">
+    <button class="btn"
+      onclick="document.querySelector('#contact').scrollIntoView({behavior:'smooth'})">
+      📩 Contact Me
+    </button>
+  </div>
+</section>
+
+<section>
+  <h2>About Me</h2>
+  <p>I build high-performance Telegram bots, APIs, automation systems, and modern web solutions focused on speed, security, and scalability.</p>
+</section>
+
+<section>
+  <h2>Skills</h2>
+  <div class="grid">
+    <div class="card">Telegram Bots</div>
+    <div class="card">API Infrastructure</div>
+    <div class="card">Node.js & JavaScript</div>
+    <div class="card">Security Systems</div>
+  </div>
+</section>
+
+<section>
+  <h2>Projects</h2>
+  <div class="grid">
+    <div class="card">Advanced Telegram Automation Bot</div>
+    <div class="card">Custom API Engine</div>
+    <div class="card">Web-Based Control Panels</div>
+  </div>
+</section>
+
+<section id="contact">
+  <h2 style="text-align:center;">Get In Touch</h2>
+
+  <div class="contact-buttons">
+    <a class="wa" href="https://wa.me/27720402551" target="_blank">WhatsApp</a>
+    <a class="tg" href="https://t.me/DARKVENOMRSA" target="_blank">Telegram</a>
+    <a class="mail" href="mailto:darkvenomrsa@gmail.com">Email</a>
+  </div>
+</section>
+
+<footer>
+  © 2026 DARKVENOMRSA — All Rights Reserved
+</footer>
+
+<button class="toggle-dark"
+  onclick="document.body.classList.toggle('dark')">🌙</button>
+
+<script>
+  const sections = document.querySelectorAll("section");
+
+  const observer = new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add("visible");
+      }
+    });
+  },{threshold:0.1});
+
+  sections.forEach(section=>observer.observe(section));
+
+  window.addEventListener("scroll",()=>{
+    const scrollTop=document.documentElement.scrollTop;
+    const height=document.documentElement.scrollHeight-document.documentElement.clientHeight;
+    document.getElementById("progress").style.width=(scrollTop/height)*100+"%";
+  });
+</script>
+
+</body>
+      </html>
